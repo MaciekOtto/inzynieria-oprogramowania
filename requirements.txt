@@ -3,5 +3,6 @@ pandas
 numpy
 requests
 scikit-learn
+joblib
 matplotlib
 openpyxl
