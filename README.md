@@ -17,10 +17,25 @@ Główne funkcjonalności:
 * Wizualizacja wyników: wykresy interaktywne i analiza ważności cech.
 * Eksport danych: zapis wyników do pliku Excel.
 
-2. WYMAGANIA SYSTEMOWE
-----------------------
-* Python 3.8 lub nowszy
-* Połączenie z internetem (do pobierania danych z API)
+2. SPECYFIKACJA WYMAGAŃ SYSTEMOWYCH
+-----------------------------------
+WYMAGANIA FUNKCJONALNE (Co system musi robić?)
+------------------------------------------------
+F01: Pobieranie danych giełdowych z zewnętrznego API (Stooq) na podstawie tickera.
+F02: Implementacja wskaźników technicznych: SMA (Simple Moving Average) oraz RSI.
+F03: Generowanie sygnałów transakcyjnych (BUY, SELL, HOLD) na podstawie przecięcia średnich i poziomu RSI.
+F04: Trenowanie modelu Random Forest z automatycznym doborem parametrów (RandomizedSearchCV).
+F05: Wykonywanie prognozy ceny zamknięcia na określoną liczbę dni roboczych.
+F06: Wizualizacja wyników na interaktywnym wykresie (ceny historyczne + prognoza).
+F07: Eksport wyników do formatu XLSX (Excel) z podziałem na arkusze.
+F08: Wyświetlanie metryk jakości modelu (R2, RMSE, MAE) oraz ważności cech (Feature Importances).
+
+WYMAGANIA NIEFUNKCJONALNE (Jakość systemu)
+---------------------------------------------
+NF01: Wydajność: Model powinien trenować się w czasie nie dłuższym niż 60 sekund dla 3-letniego zakresu danych.
+NF02: Interfejs: Aplikacja powinna być dostępna przez przeglądarkę internetową (Streamlit).
+NF03: Niezawodność: Obsługa błędów w przypadku braku połączenia z API lub wprowadzenia błędnego tickera.
+NF04: Przenośność: Możliwość uruchomienia na systemach Windows, Linux i macOS przy użyciu Pythona.
 
 3. INSTALACJA
 -------------
@@ -63,7 +78,27 @@ przeglądarce internetowej pod adresem http://localhost:8501.
 * Matplotlib: Generowanie wykresów.
 * Requests: Komunikacja z API Stooq.
 
-7. AUTOR I LICENCJA
+7. AUTORZY I OŚWIADCZENIE O AI
+------------------------------
+Autorzy projektu:
+* Maciej Otto
+* Laura Milczanowska
+
+Oświadczenie o wykorzystaniu AI:
+W procesie wytwarzania oprogramowania, projektowania architektury oraz 
+opracowywania dokumentacji wykorzystano narzędzia sztucznej inteligencji 
+(Large Language Models). AI wspomogło proces optymalizacji algorytmu 
+Random Forest oraz generowanie komponentów interfejsu Streamlit.
+
+8. LICENCJA
 -------------------
-Projekt zrealizowany w ramach przedmiotu Inżynieria Oprogramowania.
-Licencja: MIT
+Projekt udostępniany jest na licencji MIT.
+
+Licencja MIT pozwala na:
+- Korzystanie z oprogramowania w celach prywatnych i komercyjnych.
+- Modyfikowanie kodu źródłowego.
+- Dalszą dystrybucję kodu.
+
+Jedynym warunkiem jest zachowanie informacji o autorach oraz treści 
+licencji w kopiach oprogramowania. Oprogramowanie dostarczane jest 
+"takie, jakie jest", bez jakiejkolwiek gwarancji.
