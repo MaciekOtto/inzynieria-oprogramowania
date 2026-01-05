@@ -1,104 +1,113 @@
 ========================================================================
-PROJEKT: SYSTEM PROGNOZOWANIA SYGNAŁÓW FINANSOWYCH (RANDOM FOREST)
+DOKUMENTACJA PROJEKTOWA: RF-Predictor
 ========================================================================
 
-1. OPIS PROJEKTU
-----------------
-Aplikacja służy do pobierania historycznych danych giełdowych z serwisu 
-Stooq, trenowania zaawansowanego modelu uczenia maszynowego (Random Forest) 
-oraz generowania prognoz kursów zamknięcia wraz z sygnałami technicznymi 
-(wzrost/spadek).
+1. CHARAKTERYSTYKA OPROGRAMOWANIA
+---------------------------------
+a. Nazwa skrócona: 
+   RF-Predictor
 
-Główne funkcjonalności:
-* Automatyczne pobieranie danych giełdowych (API Stooq).
-* Inżynieria cech: wyliczanie wskaźników RSI, SMA oraz zmienności.
-* Optymalizacja modelu: użycie RandomizedSearchCV oraz TimeSeriesSplit.
-* Automatyczny wybór cech (Feature Selection) przy użyciu SelectFromModel.
-* Wizualizacja wyników: wykresy interaktywne i analiza ważności cech.
-* Eksport danych: zapis wyników do pliku Excel.
+b. Nazwa pełna: 
+   System Prognozowania Sygnałów i Kursów Giełdowych przy użyciu Algorytmu 
+   Random Forest.
 
-2. SPECYFIKACJA WYMAGAŃ SYSTEMOWYCH
------------------------------------
-WYMAGANIA FUNKCJONALNE (Co system musi robić?)
-------------------------------------------------
-F01: Pobieranie danych giełdowych z zewnętrznego API (Stooq) na podstawie tickera.
-F02: Implementacja wskaźników technicznych: SMA (Simple Moving Average) oraz RSI.
-F03: Generowanie sygnałów transakcyjnych (BUY, SELL, HOLD) na podstawie przecięcia średnich i poziomu RSI.
-F04: Trenowanie modelu Random Forest z automatycznym doborem parametrów (RandomizedSearchCV).
-F05: Wykonywanie prognozy ceny zamknięcia na określoną liczbę dni roboczych.
-F06: Wizualizacja wyników na interaktywnym wykresie (ceny historyczne + prognoza).
-F07: Eksport wyników do formatu XLSX (Excel) z podziałem na arkusze.
-F08: Wyświetlanie metryk jakości modelu (R2, RMSE, MAE) oraz ważności cech (Feature Importances).
+c. Sumaryczny opis:
+   Aplikacja jest narzędziem analitycznym wspomagającym podejmowanie 
+   decyzji inwestycyjnych poprzez analizę danych historycznych z serwisu 
+   Stooq. System wykorzystuje model uczenia maszynowego Random Forest 
+   do prognozowania przyszłych kursów zamknięcia aktywów finansowych.
 
-WYMAGANIA NIEFUNKCJONALNE (Jakość systemu)
----------------------------------------------
-NF01: Wydajność: Model powinien trenować się w czasie nie dłuższym niż 60 sekund dla 3-letniego zakresu danych.
-NF02: Interfejs: Aplikacja powinna być dostępna przez przeglądarkę internetową (Streamlit).
-NF03: Niezawodność: Obsługa błędów w przypadku braku połączenia z API lub wprowadzenia błędnego tickera.
-NF04: Przenośność: Możliwość uruchomienia na systemach Windows, Linux i macOS przy użyciu Pythona.
+   Głównym celem projektu jest zautomatyzowanie procesu pobierania danych, 
+   ich transformacji oraz budowy optymalnego modelu predykcyjnego. 
+   System dostarcza użytkownikowi czytelną wizualizację wyników wraz 
+   z możliwością eksportu danych do formatu arkusza kalkulacyjnego XLSX.
 
-3. INSTALACJA
--------------
-Aby przygotować środowisko, wykonaj poniższe kroki w terminalu:
 
-1. Sklonuj repozytorium lub pobierz pliki projektu.
-2. Utwórz wirtualne środowisko (opcjonalnie):
-   python -m venv venv
-3. Aktywuj środowisko:
-   - Windows: venv\Scripts\activate
-   - Linux/Mac: source venv/bin/activate
-4. Zainstaluj wymagane biblioteki:
-   pip install -r requirements.txt
+2. PRAWA AUTORSKIE
+------------------
+a. Autorzy:
+   - Maciej Otto
+   - Laura Milczanowska
 
-4. URUCHOMIENIE APLIKACJI
--------------------------
-Aplikacja jest zbudowana przy użyciu frameworka Streamlit. Aby ją włączyć, 
-wpisz w konsoli:
+b. Oświadczenie o AI:
+   W procesie wytwarzania oprogramowania, projektowania architektury 
+   oraz opracowywania dokumentacji wykorzystano narzędzia sztucznej 
+   inteligencji (Large Language Models). AI wspomogło proces optymalizacji 
+   algorytmów oraz generowanie komponentów interfejsu.
 
-   streamlit run apk_rf_pred.py
+c. Warunki licencyjne:
+   Oprogramowanie udostępniane jest na licencji MIT. Pozwala ona na 
+   dowolne wykorzystanie i modyfikowanie kodu pod warunkiem zachowania 
+   informacji o autorach. Kod dostarczany jest "as is" bez gwarancji 
+   zyskowności operacji giełdowych.
 
-Po uruchomieniu aplikacja otworzy się automatycznie w domyślnej 
-przeglądarce internetowej pod adresem http://localhost:8501.
 
-5. INSTRUKCJA OBSŁUGI
----------------------
-1. W panelu bocznym/głównym wprowadź Ticker (np. "pkn.pl" dla Orlenu 
-   lub "aapl.us" dla Apple).
-2. Wybierz zakres dat historycznych do treningu.
-3. Określ horyzont prognozy (liczbę dni) oraz liczbę opóźnień (lags).
-4. Kliknij "Uruchom (enhanced)".
-5. Po zakończeniu obliczeń przejrzyj metryki (R2, RMSE), wykresy 
-   oraz pobierz raport Excel.
+3. SPECYFIKACJA WYMAGAŃ
+-----------------------
 
-6. TECHNOLOGIE I BIBLIOTEKI
----------------------------
-* Streamlit: Interfejs użytkownika.
-* Scikit-learn: Silnik ML (Random Forest, Pipeline, Preprocessing).
-* Pandas/Numpy: Przetwarzanie i analiza danych.
-* Matplotlib: Generowanie wykresów.
-* Requests: Komunikacja z API Stooq.
+| ID  | NAZWA              | OPIS                                   | PRIO | KATEGORIA      |
+|-----|--------------------|----------------------------------------|------|----------------|
+| F01 | Pobieranie danych  | Pobieranie danych CSV z API Stooq.     | 1    | Funkcjonalne   |
+| F02 | Wskaźniki techn.   | Obliczanie RSI oraz średnich SMA.      | 1    | Funkcjonalne   |
+| F03 | Trening modelu     | Optymalizacja RF (RandomizedSearchCV). | 1    | Funkcjonalne   |
+| F04 | Prognoza cen       | Przewidywanie cen na N dni roboczych.  | 1    | Funkcjonalne   |
+| F05 | Eksport XLSX       | Zapis wyników do pliku Excel.          | 2    | Funkcjonalne   |
+| F06 | Wizualizacja       | Interaktywny wykres cen i sygnałów.    | 1    | Funkcjonalne   |
+| F07 | Ważność cech       | Wykres ważności parametrów (import.).  | 3    | Funkcjonalne   |
+| NF1 | Wydajność          | Czas treningu modelu < 60 sekund.      | 1    | Pozafunkcjonal.|
+| NF2 | Interfejs          | Dostępność przez przeglądarkę (Web).   | 1    | Pozafunkcjonal.|
+| NF3 | Niezawodność       | Obsługa błędów połączenia z API.       | 2    | Pozafunkcjonal.|
 
-7. AUTORZY I OŚWIADCZENIE O AI
-------------------------------
-Autorzy projektu:
-* Maciej Otto
-* Laura Milczanowska
+* Legenda priorytetów: 1 - wymagane, 2 - przydatne, 3 - opcjonalne.
 
-Oświadczenie o wykorzystaniu AI:
-W procesie wytwarzania oprogramowania, projektowania architektury oraz 
-opracowywania dokumentacji wykorzystano narzędzia sztucznej inteligencji 
-(Large Language Models). AI wspomogło proces optymalizacji algorytmu 
-Random Forest oraz generowanie komponentów interfejsu Streamlit.
 
-8. LICENCJA
--------------------
-Projekt udostępniany jest na licencji MIT.
+4. ARCHITEKTURA SYSTEMU
+-----------------------
 
-Licencja MIT pozwala na:
-- Korzystanie z oprogramowania w celach prywatnych i komercyjnych.
-- Modyfikowanie kodu źródłowego.
-- Dalszą dystrybucję kodu.
+a. Architektura rozwoju (Development Stack):
+--------------------------------------------
+- Python (Język programowania)           | wersja: 3.10+
+- Visual Studio Code (IDE)               | wersja: 1.85+
+- Git / GitHub (Kontrola wersji)         | wersja: 2.40+
+- pip (Menedżer pakietów)                | wersja: 23.0+
 
-Jedynym warunkiem jest zachowanie informacji o autorach oraz treści 
-licencji w kopiach oprogramowania. Oprogramowanie dostarczane jest 
-"takie, jakie jest", bez jakiejkolwiek gwarancji.
+b. Architektura uruchomieniowa (Runtime Stack):
+-----------------------------------------------
+- Streamlit (Serwer aplikacji i UI)      | wersja: 1.28+
+- Scikit-learn (Algorytmy ML)            | wersja: 1.3+
+- Pandas (Analiza danych)                | wersja: 2.1+
+- Matplotlib (Wykresy)                   | wersja: 3.8+
+- Requests (Komunikacja API)             | wersja: 2.31+
+
+c. Logika przepływu danych:
+   Użytkownik -> Streamlit UI -> Requests (Stooq) -> Pandas (Preprocessing)
+   -> Scikit-learn (ML) -> Matplotlib (Wykresy) -> Użytkownik (XLSX).
+
+
+5. TESTY
+--------
+
+a. Scenariusze testów:
+----------------------
+SCENARIUSZ 1 (ST1): Test poprawnego pobierania danych.
+Kroki: Wpisanie "aapl.us", ustawienie dat, kliknięcie "Uruchom".
+Oczekiwany wynik: Wyświetlenie tabeli z danymi historycznymi.
+
+SCENARIUSZ 2 (ST2): Test obsługi błędnego symbolu.
+Kroki: Wpisanie "BŁĘDNY_KOD_123", próba uruchomienia.
+Oczekiwany wynik: Komunikat o błędzie "Brak danych".
+
+SCENARIUSZ 3 (ST3): Test generowania raportu.
+Kroki: Uruchomienie pełnej analizy, kliknięcie "Pobierz Excel".
+Oczekiwany wynik: Zapisanie na dysku poprawnego pliku .xlsx.
+
+b. Sprawozdanie z wykonania:
+----------------------------
+| ID  | DATA TESTU | STATUS | UWAGI                             |
+|-----|------------|--------|-----------------------------------|
+| ST1 | 2025-12-20 | PASS   | Poprawna komunikacja z API.       |
+| ST2 | 2025-12-25 | PASS   | System nie zawiesza się.          |
+| ST3 | 2025-12-28 | PASS   | Raport zawiera wszystkie arkusze. |
+
+========================================================================
+KONIEC DOKUMENTACJI
