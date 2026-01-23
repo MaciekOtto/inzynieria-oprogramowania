@@ -109,5 +109,41 @@ b. Sprawozdanie z wykonania:
 | ST2 | 2025-12-25 | PASS   | System nie zawiesza się.          |
 | ST3 | 2025-12-28 | PASS   | Raport zawiera wszystkie arkusze. |
 
+6. INSTRUKCJA URUCHOMIENIA (DLA ŚRODOWISKA WIRTUALNEGO)
+------------------------------------------------------
+Poniższa instrukcja opisuje proces instalacji projektu w izolowanym 
+środowisku venv, co gwarantuje poprawność działania wszystkich zależności.
+
+KROK 1: Klonowanie repozytorium / Pobranie plików
+   Upewnij się, że w folderze projektu znajdują się pliki:
+   - apk_rf_pred.py
+   - requirements.txt
+
+KROK 2: Utworzenie środowiska wirtualnego (Python venv)
+   Otwórz terminal w folderze projektu i wpisz:
+   python -m venv venv
+
+KROK 3: Aktywacja środowiska
+   - System Windows:
+     venv\Scripts\activate
+   - System Linux / macOS:
+     source venv/bin/activate
+
+KROK 4: Instalacja zależności z pliku requirements.txt
+   Po aktywacji venv (pojawi się napis (venv) w konsoli), wpisz:
+   pip install --upgrade pip
+   pip install -r requirements.txt
+
+KROK 5: Uruchomienie aplikacji
+   Wpisz komendę:
+   streamlit run apk_rf_pred.py
+
+KROK 6: Dostęp do interfejsu
+   Aplikacja uruchomi serwer lokalny. Adres zostanie wyświetlony 
+   w konsoli (zazwyczaj http://localhost:8501). Skopiuj go do przeglądarki.
+
+UWAGA: Do poprawnego działania wymagany jest dostęp do internetu 
+(pobieranie danych z API Stooq).
+
 ========================================================================
 KONIEC DOKUMENTACJI
