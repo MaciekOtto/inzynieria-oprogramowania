@@ -1,11 +1,11 @@
 ========================================================================
-DOKUMENTACJA PROJEKTOWA: RF-Predictor
+DOKUMENTACJA PROJEKTOWA: Random Forest predictor
 ========================================================================
 
 1. CHARAKTERYSTYKA OPROGRAMOWANIA
 ---------------------------------
 a. Nazwa skrócona: 
-   RF-Predictor
+   RandomForest-Predictor
 
 b. Nazwa pełna: 
    System Prognozowania Sygnałów i Kursów Giełdowych przy użyciu Algorytmu 
@@ -39,7 +39,7 @@ c. Warunki licencyjne:
    Oprogramowanie udostępniane jest na licencji MIT. Pozwala ona na 
    dowolne wykorzystanie i modyfikowanie kodu pod warunkiem zachowania 
    informacji o autorach. Kod dostarczany jest "as is" bez gwarancji 
-   zyskowności operacji giełdowych.
+   zyskowności operacji giełdowych - syngały, predykcje dostaraczne przez aplikacje nie są poradami finansowymi. 
 
 
 3. SPECYFIKACJA WYMAGAŃ
