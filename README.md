@@ -143,5 +143,4 @@ KROK 6: Dostęp do interfejsu
 UWAGA: Do poprawnego działania wymagany jest dostęp do internetu 
 (pobieranie danych z API Stooq).
 
-========================================================================
-KONIEC DOKUMENTACJI
+====================================KONIEC DOKUMENTACJI==========================
