@@ -1,6 +1,5 @@
-========================================================================
-DOKUMENTACJA PROJEKTOWA: Random Forest predictor
-========================================================================
+==================================DOKUMENTACJA PROJEKTOWA: Random Forest predictor
+==================================
 
 1. CHARAKTERYSTYKA OPROGRAMOWANIA
 ---------------------------------
