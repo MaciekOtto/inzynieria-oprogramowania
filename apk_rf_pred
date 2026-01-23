@@ -1,4 +1,3 @@
-# aplikacja_rf_signals.py
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -16,9 +15,9 @@ import joblib
 import matplotlib.pyplot as plt
 import os
 
-# -----------------------------
-# 🆕 Nowe: wskaźniki techniczne
-# -----------------------------
+
+# Wskaźniki techniczne, SMA, RSI + setup sygnałów
+
 def sma(series: pd.Series, window: int):
     return series.rolling(window=window, min_periods=1).mean()
 
@@ -53,9 +52,8 @@ def generate_signals(df: pd.DataFrame, short_window=5, long_window=20, rsi_perio
     df.drop(['prev_short', 'prev_long'], axis=1, inplace=True)
     return df
 
-# -----------------------------
-# Pobieranie danych (bez zmian)
-# -----------------------------
+# Pobieranie danych - z url stooq.com
+
 @st.cache_data(show_spinner=False)
 def pobierz_dane_stooq_cached(ticker: str, start_date: str, end_date: str, retries: int = 3, backoff: float = 0.5):
     """
@@ -83,10 +81,8 @@ def pobierz_dane_stooq_cached(ticker: str, start_date: str, end_date: str, retri
     df.reset_index(inplace=True)
     return df
 
-# -----------------------------
-# GridSearchCV + prognoza
-# (zachowane w całości; drobne poprawki)
-# -----------------------------
+# Zastosowanie modelu + optymalizacja + prognoza
+
 def prognozuj_random_forest_enhanced(df: pd.DataFrame, days: int, n_lags: int = 5, save_model: bool = True, model_path: str = "best_rf.joblib"):
     df = df[['Date','Open','High','Low','Close','Volume']].copy().reset_index(drop=True)
     # add engineered features: returns, short/long SMA, RSI, volatility
@@ -216,9 +212,9 @@ def prognozuj_random_forest_enhanced(df: pd.DataFrame, days: int, n_lags: int = 
     preds_df = pd.DataFrame(preds)
     return preds_df, metrics, feat_importances, best
 
-# -----------------------------
-# 🖼️ UI
-# -----------------------------
+
+# UI - interfejs setup
+
 def main():
     st.set_page_config(page_title="Prognozowanie RANDOM FOREST", layout="centered")
     st.title("📊 Random Forest Prognoza")
@@ -276,8 +272,8 @@ def main():
             ax.plot(preds_df['Date'], preds_df['PredictedClose'], color='red', marker='o', label='Forecast')
         ax.set_title(ticker.upper()); ax.set_xlabel("Date"); ax.set_ylabel("Close"); ax.grid(alpha=0.3); ax.legend()
         st.pyplot(fig)
-        # export
-        outname = f"{ticker.replace('.','_')}_forecast_enhanced.xlsx"
+        # export functionality
+        outname = f"{ticker.replace('.','_')}_prediction_.xlsx"
         with pd.ExcelWriter(outname, engine='openpyxl') as writer:
             hist.to_excel(writer, sheet_name='history', index=False)
             preds_df.to_excel(writer, sheet_name='forecast', index=False)
