@@ -44,9 +44,9 @@ def generate_signals(df: pd.DataFrame, short_window=5, long_window=20, rsi_perio
         if i == 0:
             signals.append(sig); continue
         if (row['SMA_short'] > row['SMA_long']) and (df.at[i-1, 'SMA_short'] <= df.at[i-1, 'SMA_long']) and (row['RSI'] < 70 and row['RSI'] > 30):
-            sig = 'BUY'
+            sig = 'UP'
         elif (row['SMA_short'] < row['SMA_long']) and (df.at[i-1, 'SMA_short'] >= df.at[i-1, 'SMA_long']) and (row['RSI'] >= 60 and row['RSI'] <= 90):
-            sig = 'SELL'
+            sig = 'DOWN'
         signals.append(sig)
     df['Signal'] = signals
     df.drop(['prev_short', 'prev_long'], axis=1, inplace=True)
