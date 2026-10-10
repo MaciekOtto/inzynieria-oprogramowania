@@ -1,0 +1,19 @@
+# Interfejs i serwer aplikacji
+streamlit>=1.28
+
+# Przetwarzanie danych
+pandas>=2.1
+numpy
+
+# Modele ML (Random Forest, pipeline, strojenie hiperparametrów)
+scikit-learn>=1.3
+joblib
+
+# Wizualizacja
+matplotlib>=3.8
+
+# Pobieranie danych giełdowych (Yahoo Finance, bez klucza API)
+yfinance>=0.2.66
+
+# Eksport do XLSX
+openpyxl
