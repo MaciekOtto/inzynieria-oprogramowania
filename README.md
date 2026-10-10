@@ -12,7 +12,7 @@ b. Nazwa pełna:
 c. Sumaryczny opis:
    Aplikacja jest narzędziem analitycznym wspomagającym podejmowanie 
    decyzji inwestycyjnych poprzez analizę danych historycznych z serwisu 
-   Stooq. System wykorzystuje model uczenia maszynowego Random Forest 
+   Yahoo Finance. System wykorzystuje model uczenia maszynowego Random Forest 
    do prognozowania przyszłych kursów zamknięcia aktywów finansowych.
 
    Głównym celem projektu jest zautomatyzowanie procesu pobierania danych, 
@@ -45,7 +45,7 @@ c. Warunki licencyjne:
 
 | ID  | NAZWA              | OPIS                                   | PRIO | KATEGORIA      |
 |-----|--------------------|----------------------------------------|------|----------------|
-| F01 | Pobieranie danych  | Pobieranie danych CSV z API Stooq.     | 1    | Funkcjonalne   |
+| F01 | Pobieranie danych  | Pobieranie danych CSV z API Yfinance.  | 1    | Funkcjonalne   |
 | F02 | Wskaźniki techn.   | Obliczanie RSI oraz średnich SMA.      | 1    | Funkcjonalne   |
 | F03 | Trening modelu     | Optymalizacja RF (RandomizedSearchCV). | 1    | Funkcjonalne   |
 | F04 | Prognoza cen       | Przewidywanie cen na N dni roboczych.  | 1    | Funkcjonalne   |
@@ -78,7 +78,7 @@ b. Architektura uruchomieniowa (Runtime Stack):
 - Requests (Komunikacja API)             | wersja: 2.31+
 
 c. Logika przepływu danych:
-   Użytkownik -> Streamlit UI -> Requests (Stooq) -> Pandas (Preprocessing)
+   Użytkownik -> Streamlit UI -> Requests (Yfinance) -> Pandas (Preprocessing)
    -> Scikit-learn (ML) -> Matplotlib (Wykresy) -> Użytkownik (XLSX).
 
 
@@ -141,6 +141,6 @@ KROK 6: Dostęp do interfejsu
    w konsoli (zazwyczaj http://localhost:8501). Skopiuj go do przeglądarki.
 
 UWAGA: Do poprawnego działania wymagany jest dostęp do internetu 
-(pobieranie danych z API Stooq).
+(pobieranie danych z API yfinance).
 
 ====================================KONIEC DOKUMENTACJI==========================
