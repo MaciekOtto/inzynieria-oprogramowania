@@ -1,6 +1,4 @@
-# RandomForest-Predictor — Stock Price and Signal Forecasting (Streamlit)
-
-🇵🇱 [Wersja polska](README.md)
+# STOCKSIGHT - Stock Price and Signal Forecasting with Random Forest (Streamlit)
 
 A **Streamlit** web application that downloads historical quotes from Yahoo Finance, computes technical indicators (SMA, RSI), forecasts closing prices with a **Random Forest** model, and presents the results in an interactive dashboard with **XLSX** export.
 
@@ -27,7 +25,7 @@ Developed as a team project for the **Software Engineering** university course.
 - Downloads daily OHLCV data from Yahoo Finance (`yfinance` library, no API key; prices adjusted for splits and dividends) and fills gaps against the full business-day calendar.
 - Technical indicators: **SMA** (short and long) and **RSI**; generates `UP` / `DOWN` / `HOLD` signals based on moving-average crossovers and RSI levels.
 - **Random Forest** training with a pipeline: `StandardScaler` → feature selection (`SelectFromModel`) → regressor, with hyperparameters tuned via `RandomizedSearchCV` using `TimeSeriesSplit` validation.
-- Closing-price forecast for **N business days** (1–30), built from predicted **daily log returns** (see [Methodology](#methodology)); the number of lags is configurable in the UI.
+- Closing-price forecast for **N business days** (1-30), built from predicted **daily log returns** (see [Methodology](#methodology)); the number of lags is configurable in the UI.
 - Model quality metrics (R² of returns, one-day price RMSE/MAE, direction accuracy) **compared against a naive benchmark** ("tomorrow = today"), the best hyperparameters found, and a feature importance chart.
 - Chart of historical prices and the forecast with an approximate **95% interval**; export of history, forecast and signals to an **XLSX** file (4 sheets).
 
@@ -44,10 +42,7 @@ Daily returns are very hard to predict, so a near-flat forecast and metrics clos
 
 ## Screenshots
 
-<!-- Add 1–2 screenshots of the running app, e.g. in a docs/ folder -->
-<!-- ![Main dashboard](docs/screenshot-main.png) -->
-
-*To be added.*
+Screenshots available outside this document/in the main folder
 
 ## Architecture
 
@@ -72,7 +67,7 @@ User → Streamlit UI → yfinance (Yahoo Finance) → Pandas (preprocessing)
 
 | File / folder | Description |
 |---|---|
-| `apk_rf_pred.py` | Main Streamlit app (extended version: indicators, hyperparameter tuning, signals, export) |
+| `Apk_STOCKSIGHT.py` | Main Streamlit app (extended version: indicators, hyperparameter tuning, signals, export) |
 | `apk_beta.py` | Earlier, simpler prototype (Random Forest without hyperparameter tuning) |
 | `prezentacja_RF/` | Project presentation ([PDF](prezentacja_RF/prezentacja%20random%20forest.pdf), in Polish) |
 | `requirements.txt` | Python dependencies |
@@ -121,7 +116,7 @@ The app starts a local server, usually at <http://localhost:8501>. In the UI, en
 | NF2 | Interface | Accessible via web browser | 1 | Non-functional |
 | NF3 | Reliability | Handling of API connection errors | 2 | Non-functional |
 
-Priorities: 1 — required, 2 — useful, 3 — optional.
+Priorities: 1 - required, 2 - useful, 3 - optional.
 
 ## Tests
 
